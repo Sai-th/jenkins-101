@@ -1,2 +1,2 @@
 
-print("Hello world")
+print("Hello, this is a freestyle job")
