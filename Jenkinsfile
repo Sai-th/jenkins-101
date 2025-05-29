@@ -10,23 +10,25 @@ pipeline {
     options {
         disableConcurrentBuilds() // Prevent overlapping builds
     }
-    stages {
-        stage('Build') {
-            steps {
-                echo "Building Master Branch..."
-                sh '''
-                cd myapp
-                pip install -r requirements.txt
-                '''
+    stage('Build') {
+        steps {
+            dir('myapp') {
+              sh '''
+              python3 -m venv venv
+              source venv/bin/activate
+              pip install --upgrade pip
+              pip install -r requirements.txt'''
             }
         }
+    }
         stage('Test') {
             steps {
                 echo "Testing Master Branch..."
                 sh '''
                 cd myapp
-                python3 helloworld.py
-                python3 helloworld.py --name=Sai
+                . venv/bin/activate
+                python3 Branch_1.py
+                python3 Branch_1.py --name=Sai
                 '''
             }
         }
