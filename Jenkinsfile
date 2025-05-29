@@ -1,16 +1,19 @@
 pipeline {
-    agent { 
+    agent {
         node {
             label 'jenkins_node_default'
-            }
-      }
+        }
+    }
     triggers {
-        pollSCM '* * * * *'
+        pollSCM 'H/2 * * * *' // Polls Git every 2 minutes for new build
+    }
+    options {
+        disableConcurrentBuilds() // Prevent overlapping builds
     }
     stages {
         stage('Build') {
             steps {
-                echo "Building.."
+                echo "Building Branch_1..."
                 sh '''
                 cd myapp
                 pip install -r requirements.txt
@@ -19,19 +22,19 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing.."
+                echo "Testing Branch_1..."
                 sh '''
                 cd myapp
-                python3 helloworld.py
-                python3 helloworld.py --name=Brad
+                python3 Branch_1.py
+                python3 Branch_1.py --name=Sai
                 '''
             }
         }
         stage('Deliver') {
             steps {
-                echo 'Deliver....'
+                echo 'Delivering Branch_1...'
                 sh '''
-                echo "doing delivery stuff.."
+                echo "Branch_1 delivery logic..."
                 '''
             }
         }
