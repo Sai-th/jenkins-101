@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building Branch_1..."
+                echo "Building Master Branch..."
                 sh '''
                 cd myapp
                 pip install -r requirements.txt
@@ -22,19 +22,19 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing Branch_1..."
+                echo "Testing Master Branch..."
                 sh '''
                 cd myapp
-                python3 Branch_1.py
-                python3 Branch_1.py --name=Sai
+                python3 helloworld.py
+                python3 helloworld.py --name=Sai
                 '''
             }
         }
         stage('Deliver') {
             steps {
-                echo 'Delivering Branch_1...'
+                echo 'Delivering Master Branch...'
                 sh '''
-                echo "Branch_1 delivery logic..."
+                echo "Master Branch delivery logic..."
                 '''
             }
         }
