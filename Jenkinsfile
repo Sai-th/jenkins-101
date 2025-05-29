@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         node {
-            label 'docker-agent-python-master'
+            label 'jenkins_node_default'
             }
       }
     triggers {
