@@ -27,8 +27,8 @@ pipeline {
                 sh '''
                 cd myapp
                 . venv/bin/activate
-                python3 Branch_1.py
-                python3 Branch_1.py --name=Sai
+                python3 helloworld.py
+                python3 helloworld.py --name=Sai
                 '''
             }
         }
